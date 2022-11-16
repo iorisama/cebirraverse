@@ -52,6 +52,7 @@
       // Modify or remove this function to customize the visually presented
       // way that non-critical warnings and error messages are presented to the
       // user.
+
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -132,10 +133,19 @@
         });
       };      
       document.body.appendChild(script);    
+      
+      setInterval (
+          function () {
+              if (!document.hasFocus()) {
+                  window.focus();
+              }
+          },
+          1000
+      );
+      
       //Login Modal
       function Logon(){
         mods();
-        document.body.classList.add('paused');
       }   
       //Save Data User
       function SaveData(userId,playerColor){
@@ -147,7 +157,6 @@
         myGameInstance.SendMessage('DataManager', 'GetName', localStorage.getItem("user"));
         readUserData(localStorage.getItem("uid"));
         localStorage.clear();
-        document.body.classList.remove('paused');
       }
       // value - 0 to 1
       function unitySetLoaderProgressTo(value)
